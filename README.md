@@ -1,2 +1,5 @@
 # frontend-programacion-iv-crear-repo-RutaViva
-miguelreinel
+
+David Quiñones Usuario 1
+
+miguel Reinel usuario 2
