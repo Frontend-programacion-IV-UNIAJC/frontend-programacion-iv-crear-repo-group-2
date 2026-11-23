@@ -18,11 +18,11 @@ jobs:
             - uses: withastro/action@v3
 
 
-        publicar:
+publicar:
               needs: construir
               runs-on: ubuntu-latest
               environment:
                     name: github-pages
-                    steps:
+              steps:
                         - uses: actions/deploy-pages@v4
 
