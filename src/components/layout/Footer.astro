@@ -1,0 +1,98 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="pie">
+  <div class="contenedor pie__interior">
+    <div>
+      <p class="pie__marca">RutaViva</p>
+      <p class="pie__texto">
+        Catálogo interactivo de biodiversidad de Colombia para explorar especies,
+        reinos, familias y registros de distribución.
+      </p>
+    </div>
+
+    <div>
+      <p class="rotulo">Secciones</p>
+      <ul class="pie__lista">
+        <li><a href={`${base}catalogo`}>Catálogo</a></li>
+        <li><a href={`${base}favoritos`}>Favoritos</a></li>
+        <li><a href={`${base}contacto`}>Contacto</a></li>
+        <li><a href={`${base}acerca-de`}>Acerca de</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="rotulo">Datos</p>
+      <p class="pie__texto">
+        Información taxonómica y registros de biodiversidad con fines educativos
+        para Programación IV — UNIAJC.
+      </p>
+    </div>
+  </div>
+
+  <div class="contenedor pie__base">
+    <p>Proyecto académico de Programación IV — Frontend y Experiencia de Usuario · 2026</p>
+  </div>
+</footer>
+
+<style>
+  .pie {
+    background: var(--color-fondo);
+    border-top: 1px solid var(--color-borde);
+    margin-top: var(--esp-6);
+    padding-top: var(--esp-6);
+    padding-bottom: var(--esp-5);
+  }
+
+  .pie__interior {
+    display: grid;
+    gap: var(--esp-5);
+  }
+
+  @media (min-width: 768px) {
+    .pie__interior {
+      grid-template-columns: 1.6fr 1fr 1.2fr;
+    }
+  }
+
+  .pie__marca {
+    font-family: var(--fuente);
+    font-size: var(--texto-l);
+    font-weight: 700;
+    color: var(--color-marca);
+    margin: 0 0 var(--esp-2);
+  }
+
+  .pie__texto {
+    font-size: var(--texto-s);
+    color: var(--color-texto-tenue);
+    margin: 0;
+  }
+
+  .pie__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-1);
+    font-size: var(--texto-s);
+  }
+
+  .pie__lista a {
+    text-decoration: none;
+  }
+
+  .pie__base {
+    margin-top: var(--esp-5);
+    padding-top: var(--esp-4);
+    border-top: 1px solid var(--color-borde);
+    font-size: var(--texto-xs);
+    color: var(--color-texto-tenue);
+  }
+
+  .pie__base p {
+    margin: 0;
+  }
+</style>

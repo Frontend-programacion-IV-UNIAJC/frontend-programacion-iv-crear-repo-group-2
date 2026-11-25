@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Boton from "../components/ui/Boton.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  titulo="Favoritos — RutaViva"
+  descripcion="Especies guardadas por el usuario en RutaViva."
+  activo="favoritos"
+>
+  <section class="contenedor">
+    <p class="rotulo">Guardadas</p>
+    <h1>Tus especies favoritas</h1>
+    <p class="subtitulo">
+      Todavía no has guardado ninguna especie. Explora el catálogo para agregar tus favoritas.
+    </p>
+    <Boton href={`${base}catalogo`}>Ir al catálogo</Boton>
+  </section>
+</Layout>
+
+<style>
+  .subtitulo {
+    max-width: var(--ancho-lectura);
+    color: var(--color-texto-tenue);
+  }
+</style>

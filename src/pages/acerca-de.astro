@@ -1,0 +1,57 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  titulo="Acerca de — RutaViva"
+  descripcion="Información técnica y decisiones de diseño del proyecto RutaViva."
+  activo="acerca-de"
+>
+  <section class="contenedor acerca">
+    <div>
+      <p class="rotulo">Acerca de</p>
+      <h1>Sobre RutaViva</h1>
+      <p>
+        RutaViva es un catálogo web de biodiversidad colombiana diseñado con enfoque
+        móvil primero, accesibilidad y rendimiento estático con Astro.
+      </p>
+
+      <h2>Decisiones de diseño</h2>
+      <ul>
+        <li>Sistema de diseño centralizado en variables CSS.</li>
+        <li>Navegación siempre visible sin menú hamburguesa.</li>
+        <li>Estructura semántica y foco de teclado visible.</li>
+      </ul>
+    </div>
+
+    <aside class="ficha">
+      <p class="rotulo">Ficha técnica</p>
+      <p><strong>Generador:</strong> Astro (sitio estático)</p>
+      <p><strong>Estilos:</strong> CSS propio con variables</p>
+      <p><strong>Equipo:</strong> David Quiñones y Miguel Reinel (Grupo 2)</p>
+      <p><strong>Publicación:</strong> GitHub Pages con GitHub Actions</p>
+    </aside>
+  </section>
+</Layout>
+
+<style>
+  .acerca {
+    display: grid;
+    gap: var(--esp-5);
+    align-items: start;
+  }
+
+  @media (min-width: 860px) {
+    .acerca {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+
+  .ficha {
+    background: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-m);
+    padding: var(--esp-4);
+    font-size: var(--texto-s);
+  }
+</style>

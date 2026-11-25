@@ -1,0 +1,80 @@
+---
+const {
+  href,
+  variante = "primario",
+  tamano = "normal",
+  tipo = "button",
+} = Astro.props;
+
+const clases = [
+  "boton",
+  `boton--${variante}`,
+  tamano === "grande" && "boton--grande",
+];
+---
+
+{href ? (
+  <a href={href} class:list={clases}>
+    <slot />
+  </a>
+) : (
+  <button type={tipo} class:list={clases}>
+    <slot />
+  </button>
+)}
+
+<style>
+  .boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--esp-2);
+    min-height: 44px;
+    padding: 0 var(--esp-4);
+    border-radius: var(--radio-s);
+    border: 1px solid transparent;
+    font-family: var(--fuente-texto);
+    font-size: var(--texto-s);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background var(--transicion), color var(--transicion), border-color var(--transicion);
+  }
+
+  .boton--primario {
+    background: var(--color-marca);
+    color: #ffffff;
+  }
+
+  .boton--primario:hover {
+    background: var(--color-marca-oscuro);
+    color: #ffffff;
+  }
+
+  .boton--secundario {
+    background: var(--color-fondo);
+    color: var(--color-marca);
+    border-color: var(--color-marca-borde);
+  }
+
+  .boton--secundario:hover {
+    background: var(--color-marca-suave);
+    color: var(--color-marca-oscuro);
+  }
+
+  .boton--texto {
+    background: transparent;
+    color: var(--color-marca);
+    padding: 0 var(--esp-2);
+  }
+
+  .boton--texto:hover {
+    background: var(--color-marca-suave);
+  }
+
+  .boton--grande {
+    min-height: 48px;
+    padding: 0 var(--esp-5);
+    font-size: var(--texto-base);
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  titulo="Catálogo de especies — RutaViva"
+  descripcion="Filtra y explora las especies registradas en RutaViva."
+  activo="catalogo"
+>
+  <section class="contenedor">
+    <p class="rotulo">Catálogo</p>
+    <h1>Catálogo de especies</h1>
+    <p class="subtitulo">
+      Filtra por reino o familia, o busca una especie por nombre común o científico.
+    </p>
+
+    <div class="caja-vacia">
+      <p>Aquí conectaremos las tarjetas, el buscador y los filtros del catálogo.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .subtitulo {
+    max-width: var(--ancho-lectura);
+    color: var(--color-texto-tenue);
+  }
+
+  .caja-vacia {
+    margin-top: var(--esp-4);
+    border: 1px dashed var(--color-borde-fuerte);
+    border-radius: var(--radio-m);
+    padding: var(--esp-6);
+    text-align: center;
+    color: var(--color-texto-tenue);
+    background: var(--color-fondo);
+  }
+
+  .caja-vacia p {
+    margin: 0;
+  }
+</style>

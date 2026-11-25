@@ -1,0 +1,47 @@
+---
+// Layout.astro
+// Estructura común de todas las páginas: el head, el encabezado y el pie.
+// Lo que cambia de una página a otra entra por <slot />.
+
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import "../styles/variables.css";
+import "../styles/global.css";
+
+const base = import.meta.env.BASE_URL;
+const { titulo, descripcion, activo, ancho = "normal" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#234e37" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <Header activo={activo} />
+
+    <main id="contenido" class:list={["principal", { "principal--ancho": ancho === "ancho" }]}>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .principal {
+    padding-top: var(--esp-6);
+    padding-bottom: var(--esp-6);
+  }
+
+  .principal--ancho {
+    padding-top: 0;
+  }
+</style>

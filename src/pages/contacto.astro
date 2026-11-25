@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  titulo="Contacto — RutaViva"
+  descripcion="Contacto y comentarios sobre el proyecto RutaViva."
+  activo="contacto"
+>
+  <section class="contenedor">
+    <p class="rotulo">Contacto</p>
+    <h1>Escríbenos</h1>
+    <p class="subtitulo">
+      ¿Quieres reportar un avistamiento o sugerir una especie para el catálogo de RutaViva?
+      Este proyecto es desarrollado por el Grupo 2 de Programación IV — UNIAJC.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .subtitulo {
+    max-width: var(--ancho-lectura);
+    color: var(--color-texto-tenue);
+  }
+</style>

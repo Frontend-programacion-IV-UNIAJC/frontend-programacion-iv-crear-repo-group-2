@@ -69,6 +69,74 @@ a:hover {
 
 /* Foco del teclado nunca se elimina, se hace visible */
 :focus-visible {
-  outline: 2px solid var(--color-marca);
-  outline-offset: 3px;
+  outline: 3px solid var(--color-marca);
+  outline-offset: 2px;
+  border-radius: var(--radio-s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Utilidades */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding-left: var(--esp-3);
+  padding-right: var(--esp-3);
+}
+
+@media (min-width: 768px) {
+  .contenedor {
+    padding-left: var(--esp-5);
+    padding-right: var(--esp-5);
+  }
+}
+
+/* Visible para los lectores de pantalla */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Enlace para saltar al contenido, el primero que recibe el foco */
+.saltar {
+  position: absolute;
+  left: var(--esp-3);
+  top: -4rem;
+  z-index: 50;
+  background: var(--color-marca);
+  color: #fff;
+  padding: var(--esp-2) var(--esp-4);
+  border-radius: var(--radio-s);
+  text-decoration: none;
+  transition: top var(--transicion);
+}
+
+.saltar:focus {
+  top: var(--esp-3);
+  color: #fff;
+}
+
+.rotulo {
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-marca);
+  margin: 0 0 var(--esp-2);
 }
