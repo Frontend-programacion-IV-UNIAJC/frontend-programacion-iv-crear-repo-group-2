@@ -1,0 +1,74 @@
+/* Estilos globales. Solo lo que aplica a todo el documento */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-base);
+  line-height: 1.65;
+  color: var(--color-texto);
+  background: var(--color-lienzo);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--esp-3);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--texto-xl);
+}
+
+h2 {
+  font-size: var(--texto-l);
+}
+
+h3 {
+  font-size: var(--texto-m);
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--texto-xxl);
+  }
+}
+
+p {
+  margin: 0 0 var(--esp-3);
+}
+
+a {
+  color: var(--color-marca);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-marca-oscuro);
+}
+
+/* Foco del teclado nunca se elimina, se hace visible */
+:focus-visible {
+  outline: 2px solid var(--color-marca);
+  outline-offset: 3px;
+}
