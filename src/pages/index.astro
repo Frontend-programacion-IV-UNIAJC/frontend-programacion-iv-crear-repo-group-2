@@ -2,9 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 import Boton from "../components/ui/Boton.astro";
 import Card from "../components/catalogo/Card.astro";
-import { especies } from "../data/datos-de-prueba.js";
+import { obtenerEspecies } from "../services/api.js";
 
 const base = import.meta.env.BASE_URL;
+const especies = await obtenerEspecies();
 const destacadas = especies.slice(0, 3);
 ---
 

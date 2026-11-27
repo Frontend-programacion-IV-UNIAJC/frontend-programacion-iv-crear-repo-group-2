@@ -1,7 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/catalogo/Card.astro";
-import { especies, reinos, familias } from "../data/datos-de-prueba.js";
+import { obtenerEspecies, obtenerFiltros } from "../services/api.js";
+
+const especies = await obtenerEspecies();
+const { reinos, familias } = obtenerFiltros(especies);
 ---
 
 <Layout

@@ -1,0 +1,169 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Boton from "../../components/ui/Boton.astro";
+import Etiqueta from "../../components/ui/Etiqueta.astro";
+import { obtenerEspecies } from "../../services/api.js";
+
+export async function getStaticPaths() {
+  const especies = await obtenerEspecies();
+  return especies.map((especie) => ({
+    params: { id: especie.id },
+    props: { especie },
+  }));
+}
+
+const { especie } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  titulo={`${especie.nombre} — RutaViva`}
+  descripcion={`Ficha de ${especie.nombre} (${especie.cientifico}) en Colombia.`}
+  activo="catalogo"
+>
+  <article class="contenedor ficha">
+    <div class="ficha__volver">
+      <Boton href={`${base}catalogo`} variante="texto">← Volver al catálogo</Boton>
+    </div>
+
+    <div class="ficha__grid">
+      <div class="ficha__medio">
+        {especie.imagen ? (
+          <img
+            class="ficha__img"
+            src={especie.imagen}
+            alt={`Fotografía de ${especie.nombre}`}
+            width="600"
+            height="450"
+          />
+        ) : (
+          <div class="ficha__placeholder">{especie.nombre.slice(0, 1)}</div>
+        )}
+      </div>
+
+      <div class="ficha__info">
+        <p class="rotulo">{especie.reino} · {especie.familia}</p>
+        <h1>{especie.nombre}</h1>
+        <p class="ficha__cientifico"><em>{especie.cientifico}</em></p>
+
+        <div class="ficha__etiquetas">
+          <Etiqueta>{especie.estado}</Etiqueta>
+          <Etiqueta variante="neutro">{especie.region}</Etiqueta>
+        </div>
+
+        <dl class="datos">
+          <div class="datos__fila">
+            <dt>Reino</dt>
+            <dd>{especie.reino}</dd>
+          </div>
+          <div class="datos__fila">
+            <dt>Grupo / Familia</dt>
+            <dd>{especie.familia}</dd>
+          </div>
+          <div class="datos__fila">
+            <dt>Región</dt>
+            <dd>{especie.region}</dd>
+          </div>
+          <div class="datos__fila">
+            <dt>Registros</dt>
+            <dd>{especie.estado}</dd>
+          </div>
+        </dl>
+
+        {especie.wikipedia && (
+          <div class="ficha__acciones">
+            <Boton href={especie.wikipedia} variante="secundario">
+              Leer más en Wikipedia
+            </Boton>
+          </div>
+        )}
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .ficha__volver {
+    margin-bottom: var(--esp-3);
+  }
+
+  .ficha__grid {
+    display: grid;
+    gap: var(--esp-5);
+    align-items: start;
+  }
+
+  @media (min-width: 820px) {
+    .ficha__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .ficha__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radio-m);
+    border: 1px solid var(--color-borde);
+  }
+
+  .ficha__placeholder {
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radio-m);
+    background: var(--color-marca-suave);
+    color: var(--color-marca);
+    font-family: var(--fuente);
+    font-size: 4rem;
+    font-weight: 700;
+  }
+
+  .ficha__cientifico {
+    margin: 0 0 var(--esp-3);
+    font-size: var(--texto-m);
+    color: var(--color-texto-tenue);
+  }
+
+  .ficha__etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-1);
+    margin-bottom: var(--esp-4);
+  }
+
+  .datos {
+    margin: 0;
+    background: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-m);
+    padding: var(--esp-3) var(--esp-4);
+  }
+
+  .datos__fila {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--esp-3);
+    padding: var(--esp-2) 0;
+    border-bottom: 1px solid var(--color-borde);
+    font-size: var(--texto-s);
+  }
+
+  .datos__fila:last-child {
+    border-bottom: none;
+  }
+
+  .datos__fila dt {
+    color: var(--color-texto-tenue);
+  }
+
+  .datos__fila dd {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .ficha__acciones {
+    margin-top: var(--esp-4);
+  }
+</style>
