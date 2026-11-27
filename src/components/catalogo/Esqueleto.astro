@@ -1,0 +1,83 @@
+---
+const { cantidad = 3 } = Astro.props;
+const items = Array.from({ length: cantidad });
+---
+
+<div class="rejilla-esq" aria-busy="true" aria-label="Cargando especies">
+  {items.map(() => (
+    <div class="esq">
+      <div class="esq__img" />
+      <div class="esq__cuerpo">
+        <div class="esq__linea esq__linea--titulo" />
+        <div class="esq__linea esq__linea--meta" />
+        <div class="esq__chips">
+          <span class="esq__chip" />
+          <span class="esq__chip" />
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .rejilla-esq {
+    display: grid;
+    gap: var(--esp-4);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .esq {
+    background: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-m);
+    overflow: hidden;
+  }
+
+  .esq__img {
+    aspect-ratio: 4 / 3;
+    background: var(--color-superficie);
+    animation: pulso 1.4s ease-in-out infinite;
+  }
+
+  .esq__cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-2);
+    padding: var(--esp-3);
+  }
+
+  .esq__linea {
+    height: 16px;
+    border-radius: var(--radio-s);
+    background: var(--color-superficie);
+    animation: pulso 1.4s ease-in-out infinite;
+  }
+
+  .esq__linea--titulo {
+    width: 72%;
+    height: 20px;
+  }
+
+  .esq__linea--meta {
+    width: 55%;
+  }
+
+  .esq__chips {
+    display: flex;
+    gap: var(--esp-1);
+    margin-top: var(--esp-1);
+  }
+
+  .esq__chip {
+    width: 68px;
+    height: 24px;
+    border-radius: var(--radio-pill);
+    background: var(--color-superficie);
+    animation: pulso 1.4s ease-in-out infinite;
+  }
+
+  @keyframes pulso {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+</style>

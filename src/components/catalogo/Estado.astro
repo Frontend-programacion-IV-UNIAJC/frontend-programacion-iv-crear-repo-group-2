@@ -1,0 +1,58 @@
+---
+import Boton from "../ui/Boton.astro";
+
+const {
+  tipo = "vacio",
+  titulo = "No encontramos especies",
+  mensaje = "Prueba con otro término o limpia los filtros.",
+  textoAccion,
+  hrefAccion,
+} = Astro.props;
+---
+
+<div
+  class:list={["estado", `estado--${tipo}`]}
+  role={tipo === "error" ? "alert" : "status"}
+>
+  <h3 class="estado__titulo">{titulo}</h3>
+  <p class="estado__mensaje">{mensaje}</p>
+  {textoAccion && (
+    <Boton href={hrefAccion} variante={tipo === "error" ? "primario" : "secundario"}>
+      {textoAccion}
+    </Boton>
+  )}
+</div>
+
+<style>
+  .estado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--esp-2);
+    text-align: center;
+    padding: var(--esp-6) var(--esp-4);
+    border-radius: var(--radio-m);
+    border: 1px dashed var(--color-borde-fuerte);
+    background: var(--color-fondo);
+  }
+
+  .estado--error {
+    background: var(--color-error-suave);
+    border-color: var(--color-error);
+    border-style: solid;
+  }
+
+  .estado__titulo {
+    margin: 0;
+  }
+
+  .estado--error .estado__titulo {
+    color: var(--color-error);
+  }
+
+  .estado__mensaje {
+    margin: 0 0 var(--esp-2);
+    max-width: var(--ancho-lectura);
+    color: var(--color-texto-tenue);
+  }
+</style>

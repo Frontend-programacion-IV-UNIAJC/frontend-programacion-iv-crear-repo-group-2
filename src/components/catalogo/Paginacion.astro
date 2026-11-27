@@ -1,0 +1,73 @@
+---
+const { paginaActual = 1, totalPaginas = 3 } = Astro.props;
+const paginas = Array.from({ length: totalPaginas }, (_, i) => i + 1);
+---
+
+<nav class="paginacion" aria-label="Paginación del catálogo">
+  <button class="pag__btn" type="button" disabled={paginaActual === 1}>
+    Anterior
+  </button>
+
+  <ul class="pag__lista">
+    {paginas.map((num) => (
+      <li>
+        <button
+          class:list={["pag__num", { "pag__num--activa": num === paginaActual }]}
+          type="button"
+          aria-current={num === paginaActual ? "page" : undefined}
+        >
+          {num}
+        </button>
+      </li>
+    ))}
+  </ul>
+
+  <button class="pag__btn" type="button" disabled={paginaActual === totalPaginas}>
+    Siguiente
+  </button>
+</nav>
+
+<style>
+  .paginacion {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--esp-2);
+    margin-top: var(--esp-5);
+  }
+
+  .pag__lista {
+    display: flex;
+    gap: var(--esp-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pag__btn,
+  .pag__num {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 var(--esp-3);
+    border-radius: var(--radio-s);
+    border: 1px solid var(--color-borde-fuerte);
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    font: inherit;
+    font-size: var(--texto-s);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .pag__btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .pag__num--activa {
+    background: var(--color-marca);
+    border-color: var(--color-marca);
+    color: #ffffff;
+  }
+</style>

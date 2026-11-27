@@ -1,0 +1,17 @@
+---
+import Card from "./Card.astro";
+
+const { especies = [] } = Astro.props;
+---
+
+<div class="rejilla">
+  {especies.map((especie) => <Card especie={especie} />)}
+</div>
+
+<style>
+  .rejilla {
+    display: grid;
+    gap: var(--esp-4);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+</style>

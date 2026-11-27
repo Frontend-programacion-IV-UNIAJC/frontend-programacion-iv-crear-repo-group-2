@@ -1,8 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Boton from "../components/ui/Boton.astro";
+import Card from "../components/catalogo/Card.astro";
+import { especies } from "../data/datos-de-prueba.js";
 
 const base = import.meta.env.BASE_URL;
+const destacadas = especies.slice(0, 3);
 ---
 
 <Layout
@@ -29,7 +32,7 @@ const base = import.meta.env.BASE_URL;
         </div>
 
         <ul class="portada__datos">
-          <li><strong>6+</strong> especies iniciales</li>
+          <li><strong>{especies.length}</strong> especies iniciales</li>
           <li><strong>2</strong> filtros taxonómicos</li>
           <li><strong>100%</strong> en español</li>
         </ul>
@@ -54,8 +57,8 @@ const base = import.meta.env.BASE_URL;
       <Boton href={`${base}catalogo`} variante="secundario">Ver todas</Boton>
     </div>
 
-    <div class="caja-vacia">
-      <p>Aquí irán las tarjetas destacadas de especies (próximo paso).</p>
+    <div class="rejilla">
+      {destacadas.map((especie) => <Card especie={especie} />)}
     </div>
   </section>
 
@@ -101,4 +104,92 @@ const base = import.meta.env.BASE_URL;
       grid-template-columns: 1.15fr 0.85fr;
     }
   }
-  </style>
+  .portada__entrada {
+    max-width: var(--ancho-lectura);
+    color: var(--color-texto-tenue);
+  }
+  .portada__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-2);
+    margin: var(--esp-4) 0;
+  }
+  .portada__datos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--esp-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--texto-s);
+    color: var(--color-texto-tenue);
+  }
+  .portada__tarjeta {
+    background: var(--color-fondo);
+    border: 1px solid var(--color-marca-borde);
+    border-radius: var(--radio-m);
+    padding: var(--esp-5);
+    box-shadow: var(--sombra-s);
+  }
+  .portada__resumen {
+    margin: 0;
+    color: var(--color-texto-tenue);
+  }
+  .seccion {
+    margin-top: var(--esp-6);
+  }
+  .seccion__cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--esp-3);
+    margin-bottom: var(--esp-4);
+  }
+  .rejilla {
+    display: grid;
+    gap: var(--esp-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .rejilla {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 960px) {
+    .rejilla {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .pasos {
+    display: grid;
+    gap: var(--esp-4);
+  }
+  @media (min-width: 768px) {
+    .pasos {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .paso {
+    background: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-m);
+    padding: var(--esp-4);
+  }
+  .paso__num {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radio-s);
+    background: var(--color-marca-suave);
+    color: var(--color-marca);
+    font-weight: 700;
+    margin-bottom: var(--esp-2);
+  }
+  .paso p {
+    margin: 0;
+    font-size: var(--texto-s);
+    color: var(--color-texto-tenue);
+  }
+</style>
